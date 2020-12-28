@@ -1,9 +1,37 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Home</title>
-</head>
-<body>
-	<h1>Home</h1>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+	<div class="container-fluid">
+		<div class="row">
+				<img style="width: 100%" src="{% static 'images/shop1.png' %}">
+		</div>
+	</div>
+	<div class="py-4">
+		<div class="container">
+			<div class="row">
+				<div class="col-10 my-2 mx-auto text-center">
+					<h1 class="text-capitalize font-weight-bold">
+					Our product</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			{% for i in products %}
+				<div class="col-9 mx-auto col-md-6 col-lg-3">
+					<div class="card mb-5">
+						<div class="p-4">
+							<a href="{{ i.get_url }}"><img src="{{ i.image.url }}" alt="{{ i.name }}" width="200"></a>
+						</div>
+						<div class="card-footer d-flex justify-content-between" style="background: transparent; border-color: transparent;">
+							<p class="font-weight-bold mb-0">{{ i.name }}</p>
+							<h5 class="text-info font-italic mb-0">{{ i.price }}</h5>							
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}
+	
