@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Cart
+{% endblock %}
+{% block content %}
+
+{% if not cart_item %}
+<div class="text-center">
+	<br>
+	<h1 class="text-center product_title">Your cart is empty.</h1>
+	<br>
+	<p class="text-center">
+		Click <a href="{% url 'home' %}">here</a> to go back to products!
+	</p>
+</div>
+{% else %}
+<div class="text-center">
+	<br>
+	<div class="text-center product_title">
+		Shopping Cart
+	</div>
+</div>
+<div class="row mx-auto">
+	<div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+		<table class="table cart-table">
+			<thead class="cart-thead">
+				<tr>
+					<th colspan="4">
+						Your Items
+					</th>
+				</tr>
+			</thead>
+			{% for i in cart_item %}
+				<tr>
+					<td>
+						<a href="{{i.product.get_url}}"><img src="{{i.product.image.url}}" width="100" height="100"></a>
+					</td>
+					<td class="text-left">
+						{{i.product.name}}
+						<br>
+						SKU: {{i.product.id}}
+						<br>
+						Unit price:{{i.product.price}}
+						<br>
+						Quantity:{{i.quantity}}x{{i.product.price}}
+					</td>
+					<td>
+						{{i.sub_total}}$
+					</td>
+					{% if i.quantity < i.product.stock %}
+					<td>
+						<a href="{% url 'add_cart' i.product.id %}"><i class="material-icons cart-icon">add_shopping_cart</i></a>
+						<a href="{% url 'cart_remove' i.product.id %}"><i class="material-icons cart-icon">remove_circle_outline</i></a>
+						<a href="{% url 'cart_remove_product' i.product.id %}"><i class="material-icons cart-icon">delete</i></a>
+					</td>
+					{% else %}
+					<td>
+						<a href="{% url 'cart_remove' i.product.id %}"><i class="material-icons cart-icon">remove_circle_outline</i></a>
+						<a href="{% url 'cart_remove_product' i.product.id %}"><i class="material-icons cart-icon">delete</i></a>
+					</td>
+					{% endif %}
+				</tr>
+			{% endfor %}
+		</table>
+	</div>
+	<div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+		<table class="table cart-table">
+			<thead class="cart-thead">
+				<tr>
+					<th>
+						Check Out
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						Please check your cart before payment.
+					</td>
+				</tr>
+				<tr>
+					<td class="text-left">
+						Your total bill is: <strong>${{total}}</strong>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<a href="/" style="text-decoration: none;">
+			<button type="button" class="btn- btn-lg btn-block bg-dark text-white">Back to products</button>
+		</a>
+	</div>
+</div>
+{% endif %}
+{% endblock %}

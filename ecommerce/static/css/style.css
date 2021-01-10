@@ -1,3 +1,39 @@
 body {
 	background-color: #f8f8f8
 }
+.product_title {
+	font-size: 30px;
+	text-transform: uppercase;
+	letter-spacing: .2em;
+	padding-top: 15px;
+	padding-bottom: 10px;
+}
+.product_text {
+	padding-right: 20px;
+}
+.product_desc {
+	font-size: 16px;
+	text-transform: uppercase;
+	letter-spacing: .2em;
+}
+.cart-table {
+	min-width: 480px;
+	font-size: 14px;
+}
+.cart-thead {
+	font-weight: normal;
+	text-transform: uppercase;
+	letter-spacing: .2em;
+	background-color: #f8f9fa !important;
+}
+.cart-icon {
+	text-decoration: none;
+	color:#868e96;
+}
+.errorlist li {
+	color: red;
+	font-weight: bold;
+}
+.custom_div {
+	margin-bottom: 20px !important;
+}
